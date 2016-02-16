@@ -18,6 +18,7 @@ class TodoList extends React.Component {
 		console.log("Item to be added: ", title);
 		this.state.data.push({
 			id: this.state.nextId++,
+      key: this.state.nextId,
 			title: title
 		});
 		this.setState(this.state);
@@ -40,7 +41,7 @@ class TodoList extends React.Component {
 		});
 		
 		return (
-			<div>
+			<div style={{ padding: '20px' }}>
 				<TodoForm addItem={this._addItem}/>
 				{listItems}
 			</div>

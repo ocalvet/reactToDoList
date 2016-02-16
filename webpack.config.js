@@ -20,6 +20,11 @@ module.exports = {
         test: /\.jsx?$/,
         include: path.join(__dirname, 'app'),
         loader: 'babel'
+      },
+      {
+        test: /\.scss$/,
+        include: path.join(__dirname, 'app', 'styles'),
+        loader: 'style!css!sass'
       }
     ]
   }
