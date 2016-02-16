@@ -13,10 +13,14 @@ class TodoItem extends React.Component {
 	}
 	
 	render() {
+    var buttonStyle = {
+      color: 'red'
+    };
+    
 		return (
 			<div class="todo-item">
 				<h1>{this.props.item.title}</h1>
-				<button onClick={this._removeItemFromParent}>X</button>
+				<button onClick={this._removeItemFromParent} style={buttonStyle}>X</button>
 			</div>
 		);
 	}
