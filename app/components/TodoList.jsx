@@ -18,7 +18,6 @@ class TodoList extends React.Component {
 		console.log("Item to be added: ", title);
 		this.state.data.push({
 			id: this.state.nextId++,
-      key: this.state.nextId,
 			title: title
 		});
 		this.setState(this.state);
@@ -37,7 +36,7 @@ class TodoList extends React.Component {
 		var todoList = this;
 		
 		var listItems = this.state.data.map((listItem) => {
-			return <TodoItem item={listItem} removeMe={todoList._removeItem} />;
+			return <TodoItem key={listItem.id} item={listItem} removeMe={todoList._removeItem} />;
 		});
 		
 		return (
