@@ -11,24 +11,31 @@ class TodoList extends React.Component {
 		super(props);
 
     this.state = {
-      data: []
+      data: {}
     };
 
     this.firebaseRef = new Firebase('https://ocalvet-react-todo.firebaseio.com/todos');
-    this.firebaseRef.on('value', (data) => {
-      var todosVal = data.val();
-      let todos = _(todosVal)
-        .keys()
-        .map((key) => {
-          let clonedTodo = _.clone(todosVal[key]);
-          clonedTodo.key = key;
-          return clonedTodo;
-        })
-        .value();
+    this.firebaseRef.on('child_added', (fbTodo) => {
+      // Make sure we don't have the same element already displayed
+      if (this.state.data[fbTodo.key()]) {
+        return;
+      }
 
-      console.log('data from firebase:', todos);
+      let todoVal = fbTodo.val();
+      todoVal.key = fbTodo.key();
+      this.state.data[todoVal.key] = todoVal;
       this.setState({
-        data: todos
+        data: this.state.data
+      });
+
+     console.log('data from firebase:', todoVal);
+    });
+
+    this.firebaseRef.on('child_removed', (fbTodo) => {
+      let key = fbTodo.key();
+      delete this.state.data[key];
+      this.setState({
+        data: this.state.data
       });
     });
 	}
@@ -36,7 +43,7 @@ class TodoList extends React.Component {
 	render() {
 		var todoList = this;
 
-		var listItems = this.state.data.map((listItem) => {
+		var listItems = _.values(this.state.data).map((listItem) => {
       return <TodoItem 
                 key={listItem.key} 
                 item={listItem} />;
