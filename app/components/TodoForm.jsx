@@ -1,32 +1,52 @@
 import React from 'react';
 import { RaisedButton, TextField } from 'material-ui';
+import Firebase from 'firebase';
+import trim from 'trim';
 
 class TodoForm extends React.Component {
 	constructor(props) {
 		super(props);
     this.state = {
-      value: ''
+      title: ''
     };
+    this.firebaseRef = new Firebase('https://ocalvet-react-todo.firebaseio.com/todos')
 	}
-	
-	_addItem = () => {
-		// Get the input field
-		this.props.addItem(this.state.value);
-		this.state.value = "";
+
+  _addItem = (e) => {
+    console.log('event adding', e);
+    if (trim(this.state.title) != '') {
+      // Get the input field
+      e.preventDefault();
+      this.firebaseRef.push({
+        title: this.state.title,
+        completed: false,
+        description: 'default description'
+      });
+
+      // this.props.addItem(this.state.title);
+      this.state.title = "";
+    }
 	}
-	
+
 	_onChange = (e) => {
     this.setState({
-      value: e.target.value
+      title: e.target.value
     });
 	}
-	
+
 	render() {
 		return (
 			<div>
-				<TextField hintText="Enter Todo Item" value={this.state.value} onEnterKeyDown={this._addItem} onChange={this._onChange} />
-				<RaisedButton label="Add Item" style={{ marginLeft: '10px' }} onClick={this._addItem} />
-			</div>	
+        <TextField
+          hintText="Enter Todo Item"
+          value={this.state.title}
+          onEnterKeyDown={this._addItem.bind(this)}
+          onChange={this._onChange.bind(this)} />
+        <RaisedButton
+          label="Add Item"
+          style={{ marginLeft: '10px' }}
+          onClick={this._addItem.bind(this)} />
+			</div>
 		);
 	}
 }
