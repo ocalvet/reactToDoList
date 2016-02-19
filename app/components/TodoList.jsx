@@ -2,8 +2,9 @@ import React from 'react';
 import TodoForm from './TodoForm.jsx';
 import TodoItem from './TodoItem.jsx';
 import Firebase from 'firebase';
+import Login from './Login.jsx';
 import _ from 'lodash';
-
+import TodoStore from '../stores/TodoStore';
 
 class TodoList extends React.Component {
 
@@ -11,7 +12,8 @@ class TodoList extends React.Component {
 		super(props);
 
     this.state = {
-      data: {}
+      data: {},
+      user: TodoStore.getState()
     };
 
     this.firebaseRef = new Firebase('https://ocalvet-react-todo.firebaseio.com/todos');
@@ -38,23 +40,41 @@ class TodoList extends React.Component {
         data: this.state.data
       });
     });
-	}
+  }
+
+  componentDidMount() {
+  }
+
+  componentWillUnmount() {
+  }
+
+  onChange(state) {
+  }
 
 	render() {
-		var todoList = this;
+    var view = <Login />;
 
-		var listItems = _.values(this.state.data).map((listItem) => {
-      return <TodoItem 
-                key={listItem.key} 
+    if (this.props.user) {
+      var listItems = _.values(this.state.data).map((listItem) => {
+      return <TodoItem
+                key={listItem.key}
                 item={listItem} />;
-		});
+		  });
 
-		return (
-			<div style={{ padding: '20px' }}>
-				<TodoForm />
-				{listItems}
-			</div>
-		);
+      view = (
+        <div style={{ padding: '20px' }}>
+				  <TodoForm />
+          {listItems}
+        </div>
+      );
+    }
+
+
+    return (
+      <div style={{ padding: '20px' }}>
+        {view}
+      </div>
+    );
 	}
 }
 

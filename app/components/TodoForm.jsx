@@ -12,7 +12,7 @@ class TodoForm extends React.Component {
     this.firebaseRef = new Firebase('https://ocalvet-react-todo.firebaseio.com/todos')
 	}
 
-  _addItem = (e) => {
+  _addItem(e) {
     console.log('event adding', e);
     if (trim(this.state.title) != '') {
       // Get the input field
@@ -28,7 +28,7 @@ class TodoForm extends React.Component {
     }
 	}
 
-	_onChange = (e) => {
+	_onChange(e) {
     this.setState({
       title: e.target.value
     });

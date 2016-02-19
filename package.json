@@ -30,6 +30,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "alt": "^0.18.2",
+    "babel-plugin-transform-decorators": "^6.5.0",
     "firebase": "^2.4.1",
     "lodash": "^4.5.0",
     "material-ui": "^0.14.4",
