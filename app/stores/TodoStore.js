@@ -1,21 +1,17 @@
-import alt from 'alt';
+import alt from '../alt';
 import Actions from '../actions';
 
 class TodoStore {
   constructor() {
-    this.state = {
-      user: null
-    };
+    this.state = { user: null };
     this.bindListeners({
       login: Actions.login
     });
   }
 
   login(user) {
-    console.log('user', user);
-    this.setState({
-      user: user
-    });
+    console.log('user from firebase', user);
+    this.setState({ user });
   }
 
 }
