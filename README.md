@@ -1,10 +1,9 @@
 # React Todo Application
 This is a React Todo Application that uses webpack to bundle react components together. 
 It also uses material-ui to make the application look better.
-Firebase was use to persist the todo information and to authorize users to access the todo list.
+Firebase is use to persist the todo information and to authorize users to access the todo list.
 
 ## Dependencies
-
 * [nodejs](https://nodejs.org/en/)
 * webpack (`$ npm install -g webpack`)
 

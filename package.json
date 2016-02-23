@@ -1,7 +1,7 @@
 {
   "name": "react_todo",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a React Todo Application that uses webpack to bundle react components together",
   "main": "index.js",
   "scripts": {
     "test": "mocha test"
