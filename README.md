@@ -3,6 +3,12 @@ This is a React Todo Application that uses webpack to bundle react components to
 It also uses material-ui to make the application look better.
 Firebase is use to persist the todo information and to authorize users to access the todo list.
 
+## Technologies used
+* ES2015
+* ES7
+* Webpack
+* ReactJs
+
 ## Dependencies
 * [nodejs](https://nodejs.org/en/)
 * webpack (`$ npm install -g webpack`)
