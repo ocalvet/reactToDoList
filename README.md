@@ -4,10 +4,10 @@ It also uses material-ui to make the application look better.
 Firebase is use to persist the todo information and to authorize users to access the todo list.
 
 ## Technologies used
-* ES2015
-* ES7
-* Webpack
-* ReactJs
+* ES2015 Features
+* ES7 Features
+* Webpack (Used to serve the application)
+* ReactJs (Used for binding data to the view and creating components)
 
 ## Dependencies
 * [nodejs](https://nodejs.org/en/)
